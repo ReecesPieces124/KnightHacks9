@@ -29,6 +29,9 @@ def folder_files(folder : str) -> list:
 import topics.commands.commands as com
 WHO = functools.partial(com.random_user, message = None)
 
+import topics.commands.practice as practice
+PRACTICE = functools.partial(practice.practice_problem, message = None)
+
 import topics.fun.misc as misc
 NERD = functools.partial(misc.nerd, message=None)
 LOCK_IN = functools.partial(misc.lock_in, message=None)
@@ -45,6 +48,12 @@ triggers = [
 
 # RESPONSES
 responses = {
+
+    # PRACTICE PROBLEMS ////////////////////////////////////////////////
+    # A topic + practice/problem sends a random problem image.
+    # Must be first so it wins over the topic slide entries below.
+
+    ("practice", "problem", "problems") : PRACTICE,
 
     # TOPIC FILES ///////////////////////////////////////////////////////
     # Each topic sends every file in its folder.
@@ -198,6 +207,7 @@ responses = {
     ("help", "commands") : """
     # COMMANDS:
     **Who** : Pick random user
+    **<topic> practice** : Random practice problem for a topic (any topic works too)
         
     # OTHER:
     **Nerd**: NeRD SeLf

@@ -37,7 +37,10 @@ async def respond(message : discord.Message):
                     kwargs['message'] = message
                 if 'client' in response.keywords:
                     kwargs['client'] = client
-                await response(**kwargs)
+
+                # FALL THROUGH TO THE NEXT RESPONSE (E.G. NO PRACTICE PROBLEMS -> SLIDES)
+                if await response(**kwargs) is False:
+                    continue
 
             return
 
