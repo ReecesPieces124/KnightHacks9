@@ -173,18 +173,9 @@ responses = {
     **Who** : Pick random user
         
     # OTHER:
-    **Freak** : Freakify self
-    **Freak(@)** : Freakify @user
     **Nerd**: NeRD SeLf
     **Nerd(reply)** : NeRD MeSSaGe
-    **Touch(@)** : Give somene the cheese touch 
-    **Marry me** : Become married (timeout immunity)
-    **Pebble(@)** : Gift someone a pebble for points
-    **Collection** : View a users pebbles
-    **fun fact** : gerbot approved fun fact
-    **pro tip** : gerbot approved pro tip
     **motivate** : gerbot may or may not say something motivational
-    **doxx** : Win any argument
     **update** : See changelog and newest commands
     **Lock in** : Avoid all distractions
     **Quote** : chat, clip that
