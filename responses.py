@@ -27,22 +27,9 @@ triggers = [
 responses = {
 
     # ACTIONS
-
-    #("timeout", "mute") : USER_TIMEOUT,
     "who": WHO,
-    
-    #"freak": FREAKIFY,
     "lock me in" : LOCK_IN,
     "nerd": NERD,
-    #"touch" : THE_CHEESE_TOUCH,
-    #"marry me" : MARRY_ME,
-    # ("pebble", "gift") : PEBBLE,
-    # ("collection") : COLLECTION,
-    #("unoker", "poker") : UNOKER,
-    # "points" : POINTS,
-    # ("pinata", "piñata") : PINATA,
-    # "doxx" : DOXX,
-    # ("quote", "clip that") : QUOTE,
 
     # /////////////////////////////////////////////////////////
 
@@ -57,6 +44,10 @@ responses = {
         "ok",
         ":thumbsup:"
         "yeay i helped"        
+    ),
+
+    ("Linked Lists", "LL") : (
+        discord.file("./topics/LinkedLists/LinkedList Data Structure -V1.pdf")
     ),
 
     # QUESTIONS /////////////////////////////////////////////////////////
@@ -175,8 +166,7 @@ responses = {
     # OTHER:
     **Nerd**: NeRD SeLf
     **Nerd(reply)** : NeRD MeSSaGe
-    **motivate** : gerbot may or may not say something motivational
-    **update** : See changelog and newest commands
+    **motivate** : I may or may not say something motivational
     **Lock in** : Avoid all distractions
     **Quote** : chat, clip that
     """,
