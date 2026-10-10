@@ -1,3 +1,5 @@
+import os
+
 import functools
 
 import discord
@@ -10,6 +12,15 @@ class FileResponse(str):
     Holds only the path as a string so main.py can build a fresh
     discord.File on every send (discord closes File handles after use).
     """
+
+def folder_files(folder : str) -> list:
+    """Every file in a folder as FileResponse objects, sorted by name."""
+    paths = sorted(
+        os.path.join(folder, name)
+        for name in os.listdir(folder)
+        if os.path.isfile(os.path.join(folder, name))
+    )
+    return [FileResponse(path) for path in paths]
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
@@ -30,12 +41,37 @@ QUOTE = functools.partial(misc.quote, message=None)
 triggers = [
     "@ta",
     "ta"
-    "@ta",
-    "ta"
 ]
 
 # RESPONSES
 responses = {
+
+    # TOPIC FILES ///////////////////////////////////////////////////////
+    # Each topic sends every file in its folder.
+
+    ("linked list", "linked lists", "linkedlist", "linkedlists", "ll") : folder_files("./topics/LinkedLists"),
+    ("binary tree", "binary trees", "binary search tree", "binary search trees", "bst", "bsts") : folder_files("./topics/BinaryTree"),
+    ("avl tree", "avl trees", "avl") : folder_files("./topics/AVLTree"),
+    ("hash table", "hash tables", "hashtable", "hashtables") : folder_files("./topics/HashTable"),
+    ("heap", "heaps") : folder_files("./topics/Heaps"),
+    ("queue", "queues") : folder_files("./topics/Queues"),
+    ("stack", "stacks") : folder_files("./topics/Stacks"),
+    ("trie", "tries", "prefix tree", "prefix trees") : folder_files("./topics/Tries"),
+    ("recurrence relation", "recurrence relations", "recurrence") : folder_files("./topics/RecurrenceRelations"),
+    ("recursion", "recursive") : folder_files("./topics/Recursion"),
+    ("dma", "dynamic memory allocation", "dynamic memory", "memory allocation") : folder_files("./topics/DMA"),
+    ("c review", "c-review") : folder_files("./topics/C-Review"),
+    ("base conversion", "base conversions", "number system", "number systems") : folder_files("./topics/BaseConversion"),
+    ("algorithm analysis", "algo analysis", "big o", "big-o", "runtime", "run-time", "time complexity") : folder_files("./topics/AlgoAnalysis"),
+
+    # SORTING ///////////////////////////////////////////////////////////
+    # Specific sorts send their matching file; otherwise send them all.
+
+    ("bubble sort", "insertion sort", "selection sort", "n squire sort", "n squire sorts", "n squared sorts", "n^2 sorts", "quadratic sort", "quadratic sorts") : FileResponse("./topics/Sorting/N_squire_Sorts.pdf"),
+    ("merge sort", "mergesort") : FileResponse("./topics/Sorting/MergeSort.pdf"),
+    ("quick sort", "quicksort") : FileResponse("./topics/Sorting/quick sort V3.pdf"),
+    ("quick select", "quickselect") : FileResponse("./topics/Sorting/Quick select_updated.pdf"),
+    ("sort", "sorts", "sorting") : folder_files("./topics/Sorting"),
 
     # ACTIONS
     "who": WHO,
@@ -55,10 +91,6 @@ responses = {
         "ok",
         ":thumbsup:"
         "yeay i helped"        
-    ),
-
-    ("linked lists", "ll") : (
-        FileResponse("./topics/LinkedLists/LinkedList Data Structure -V1.pdf")
     ),
 
     # QUESTIONS /////////////////////////////////////////////////////////

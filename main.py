@@ -26,6 +26,10 @@ async def respond(message : discord.Message):
             elif isinstance(response, responses.FileResponse):
                 await message.channel.send(file=discord.File(response))
 
+            # FILES
+            elif isinstance(response, list):
+                await message.channel.send(files=[discord.File(f) for f in response])
+
             # ADDON
             elif isinstance(response, functools.partial):
                 kwargs = {}
