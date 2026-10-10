@@ -75,7 +75,7 @@ responses = {
 
     # ACTIONS
     "who": WHO,
-    "lock me in" : LOCK_IN,
+    "lock in" : LOCK_IN,
     "nerd": NERD,
 
     # /////////////////////////////////////////////////////////
