@@ -23,8 +23,8 @@ async def respond(message : discord.Message):
                 await message.channel.send(f"{response}")
 
             # FILE
-            elif type(response) == discord.File:
-                await message.channel.send(file=response)
+            elif isinstance(response, responses.FileResponse):
+                await message.channel.send(file=discord.File(response))
 
             # ADDON
             elif isinstance(response, functools.partial):

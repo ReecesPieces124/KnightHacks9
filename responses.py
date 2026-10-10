@@ -4,6 +4,15 @@ import discord
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
+class FileResponse(str):
+    """A response that should be sent as a file upload.
+
+    Holds only the path as a string so main.py can build a fresh
+    discord.File on every send (discord closes File handles after use).
+    """
+
+# ////////////////////////////////////////////////////////////////////////////////////
+
 # ADDONS
 
 import topics.commands.commands as com
@@ -19,6 +28,8 @@ QUOTE = functools.partial(misc.quote, message=None)
 
 # TRIGGER WORDS
 triggers = [
+    "@ta",
+    "ta"
     "@ta",
     "ta"
 ]
@@ -46,8 +57,8 @@ responses = {
         "yeay i helped"        
     ),
 
-    ("linked lists", "linked list", "ll") : (
-        discord.File("./topics/LinkedLists/LinkedList Data Structure -V1.pdf")
+    ("linked lists", "ll") : (
+        FileResponse("./topics/LinkedLists/LinkedList Data Structure -V1.pdf")
     ),
 
     # QUESTIONS /////////////////////////////////////////////////////////
@@ -117,25 +128,22 @@ responses = {
 
     # PSEUDO-COMMANDS ///////////////////////////////////////////////////
     "react" : (
-        discord.File("files/gif/1984.gif"),
-        discord.File("files/gif/boom.gif"),
-        discord.File("files/gif/brick.gif"),
-        discord.File("files/gif/cat.gif"),
-        discord.File("files/gif/catdead.gif"),
-        discord.File("files/gif/death.gif"),
-        discord.File("files/gif/dog.gif"),
-        discord.File("files/gif/evilcat.gif"),
-        discord.File("files/gif/explosion.gif"),
-        discord.File("files/gif/list.gif"),
-        discord.File("files/gif/nerd.gif"),
-        discord.File("files/gif/nerd2.gif"),
-        discord.File("files/gif/sad.gif"),
-        discord.File("files/gif/what.gif"),
-        discord.File("files/img/1000.png"),
-        discord.File("files/img/cry.jpg"),
-        discord.File("files/img/ha.jpg"),
-        discord.File("files/img/jarvis.jpg"),
-        discord.File("files/img/smug.jpg"),
+        FileResponse("files/gif/1984.gif"),
+        FileResponse("files/gif/boom.gif"),
+        FileResponse("files/gif/brick.gif"),
+        FileResponse("files/gif/cat.gif"),
+        FileResponse("files/gif/catdead.gif"),
+        FileResponse("files/gif/death.gif"),
+        FileResponse("files/gif/dog.gif"),
+        FileResponse("files/gif/evilcat.gif"),
+        FileResponse("files/gif/explosion.gif"),
+        FileResponse("files/gif/sad.gif"),
+        FileResponse("files/gif/what.gif"),
+        FileResponse("files/img/1000.png"),
+        FileResponse("files/img/cry.jpg"),
+        FileResponse("files/img/ha.jpg"),
+        FileResponse("files/img/jarvis.jpg"),
+        FileResponse("files/img/smug.jpg"),
     ),
 
     "motivate" : (
@@ -387,7 +395,7 @@ responses = {
             "Segmentation fault, core dumped",
             "o i i i o a i i i i ",
             "Cute puppy video -> <https://www.youtube.com/watch?v=xvFZjo5PgG0>",
-            discord.File("files/img/bubble/macdonals.gif"),
-            discord.File("files/img/uglybastard.png"),
+            FileResponse("files/img/bubble/macdonals.gif"),
+            FileResponse("files/img/uglybastard.png"),
         )
 }
