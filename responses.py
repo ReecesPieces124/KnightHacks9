@@ -6,31 +6,12 @@ import discord
 
 # ADDONS
 
-import addons.commands.commands as com
-FREAKIFY = functools.partial(com.rename, message=None, text="𝓯𝓻𝓮𝓪𝓴𝔂 ", type=com.RenameType.PREPEND, success="You have been 𝓯𝓻𝓮𝓪𝓴𝓲𝓯𝓲𝓮𝓭, enjoy", failure="I am afraid you are too freaky already" )
+import topics.commands.commands as com
 WHO = functools.partial(com.random_user, message = None)
 
-import addons.fun.games as games
-RUSSIAN_ROULETTE = functools.partial(games.roulette, x=1, y=6, points=20, message=None)
-SHOTGUN_ROULETTE = functools.partial(games.roulette, x=1, y=2, points=50, message=None)
-GRENADE_ROULETTE = functools.partial(games.roulette, x=1, y=1, points=0, message=None)
-NERF_ROULETTE = functools.partial(games.roulette, x=1, y=100, points=1, message=None)
-UNOKER = functools.partial(games.unoker, message=None)
-POINTS = functools.partial(games.points, message=None)
-PINATA = functools.partial(games.pinata, message=None)
-
-import addons.fun.rps as rps
-ROCK_PAPER_SCISSORS = functools.partial(rps.rock_paper_scissors, message=None)
-
-import addons.fun.misc as misc
-USER_TIMEOUT = functools.partial(misc.user_timeout, message=None, client=None)
+import topics.fun.misc as misc
 NERD = functools.partial(misc.nerd, message=None)
-THE_CHEESE_TOUCH = functools.partial(misc.cheese_touch, message=None)
-MARRY_ME = functools.partial(misc.marry, message=None)
-PEBBLE = functools.partial(misc.pebble, message=None)
-COLLECTION = functools.partial(misc.collection, message=None)
 LOCK_IN = functools.partial(misc.lock_in, message=None)
-DOXX = functools.partial(misc.doxx, message=None)
 QUOTE = functools.partial(misc.quote, message=None)
 
 # ////////////////////////////////////////////////////////////////////////////////////
@@ -47,48 +28,35 @@ responses = {
 
     # ACTIONS
 
-    ("timeout", "mute") : USER_TIMEOUT,
+    #("timeout", "mute") : USER_TIMEOUT,
     "who": WHO,
-
-    ("russian roulette", "revolver") : RUSSIAN_ROULETTE,
-    "shotgun" : SHOTGUN_ROULETTE,
-    "grenade" : GRENADE_ROULETTE,
-    "nerf" : NERF_ROULETTE,
-
-    ('rock', 'paper', 'scissors', 'lizard', 'spock',
-     'mouse', 'worm', 'batman', 'snake', 'gun', 'knife',
-     'toyota corolla', 'sock', 'human', 'banana', 'airplane',
-     'bug', 'computer', 'fork', 'the mediterranean sea', 'shoe',
-     'cheeseburger') : ROCK_PAPER_SCISSORS,
-
-    "freak": FREAKIFY,
+    
+    #"freak": FREAKIFY,
     "lock me in" : LOCK_IN,
     "nerd": NERD,
-    "touch" : THE_CHEESE_TOUCH,
-    "marry me" : MARRY_ME,
-    ("pebble", "gift") : PEBBLE,
-    ("collection") : COLLECTION,
-    ("unoker", "poker") : UNOKER,
-    "points" : POINTS,
-    ("pinata", "piñata") : PINATA,
-    "doxx" : DOXX,
-    ("quote", "clip that") : QUOTE,
+    #"touch" : THE_CHEESE_TOUCH,
+    #"marry me" : MARRY_ME,
+    # ("pebble", "gift") : PEBBLE,
+    # ("collection") : COLLECTION,
+    #("unoker", "poker") : UNOKER,
+    # "points" : POINTS,
+    # ("pinata", "piñata") : PINATA,
+    # "doxx" : DOXX,
+    # ("quote", "clip that") : QUOTE,
 
     # /////////////////////////////////////////////////////////
 
     # RESPONSES
 
-    "time" : ("its gerbin time!!!!", "its gerbin time", "it's-a gerbin time", "it is the time to gerb", "its gerbin time!!1!", "gerbin time"),
+    "time" : ("Let me check my watch...", "Its about ", "New PA just dropped 👀"),
     ("thank you", "thanks", "ty"): (
-        "You owe me now",
+        "You owe me a donut",
         "you are in my debt",
-        "i am your savior",
         "u r welcome",
-        ": )",
-        "k",
+        ":)",
+        "ok",
         ":thumbsup:"
-        "yeay i helped",
-        "i accept your thanks"
+        "yeay i helped"        
     ),
 
     # QUESTIONS /////////////////////////////////////////////////////////
@@ -108,12 +76,10 @@ responses = {
         "Dont ask me",
         "nerd",
         "Unlikely",
-        "Dont ask me",
         "what was the question again",
         "Dont care",
         "in a sense",
         "who asked??",
-        "your question is not important to me",
         "why would you ask this",
         "absolutly",
         "why not",
@@ -125,7 +91,7 @@ responses = {
         "of course",
         "100%",
         "this question is good but i will not answer it",
-        "yes yes yes yes",
+        "YES YES YES YES",
         "positively",
         "that is a question",
         "that has to be one of the most questions i have ever been asked",
@@ -159,30 +125,6 @@ responses = {
         ),
 
     # PSEUDO-COMMANDS ///////////////////////////////////////////////////
-    "fun fact" : (
-        "FUN FACT! DID YOU KNOW? Geologists Recommend Eating At Least One Small Rock Per Day",
-        "FUN FACT! DID YOU KNOW? Finland is not real",
-        "FUN FACT! DID YOU KNOW? where am i who are you",
-        "FUN FACT! DID YOU KNOW? contrary to popular belief pineapple pizza is not actually edible",
-        "FUN FACT! DID YOU KNOW? that i know, that you know, that i know",
-        "FUN FACT! DID YOU KNOW? its good practice to engulf your entire codebase in one gigantic try: function",
-        "FUN FACT! DID YOU KNOW? I'm utterly insane",
-    ),
-
-    "pro tip" : (
-        "Pro Tip: alt f4 during a quiz for cheat sheet",
-        "Pro Tip: breaking the law is only illegal if they catch you",
-        "Pro Tip: i am in your walls",
-        "Pro Tip: leave money in between the pages of your exam paper for extra points",
-        "Pro Tip: run.",
-        "Pro Tip: tax evasion is an easy way to save money",
-        "Pro tip: Awnser blank on any questions and the TA's will give you full credit",
-        "Pro tip: leaving your oven on means its always ready to cook",
-        "Pro tip: there IS a monster under your bed (its me)",
-        "Pro Tip: raise the classes curve yo tour own benefit by sacrificing one or more of you classmates by telling them to fail on purpose, lowering the total average",
-        "Pro Tip: Name your functions and variables \"gerbot\" and they are guaranteed to work properly"
-    ),
-
     "react" : (
         discord.File("files/gif/1984.gif"),
         discord.File("files/gif/boom.gif"),
@@ -209,12 +151,6 @@ responses = {
         discord.File("files/img/smug.jpg"),
     ),
 
-    "audio" : (
-        discord.File("files/aud/bing.mp3"),
-        discord.File("files/aud/gerber_laugh.mp3"),
-        discord.File("files/aud/gerber_chainsaw.mp3"),
-    ),
-
     "motivate" : (
         "KEEP GOING",
         "honestly just give up",
@@ -224,30 +160,18 @@ responses = {
         "you are a lost cause",
         "you might make it i guess",
         ":pensive:",
-        "you have been motivated",
         "im helping!",
         "imagine i said something motivational",
-        "i bestow you with the strength to do it",
         "DO IT OR ELSE",
-        "THERE WILL BE CONSEQUENCES IF YOU FAIL",
+        "THERE WILL BE CONSEQUENCES WHEN YOU FAIL",
         "no.",
         "i will leak your home address if you fail",
-        "you can do it i guess."
         ),
 
     ("help", "commands") : """
     # COMMANDS:
     **Who** : Pick random user
-    **Mute** : timeout random user and self
-    **Mute(@)** : timeout @user and self
-    
-    # GAMES:
-    **Points** : Number of points
-    **Roulette(russian, shotgun, grenade, nerf)** : x in y chance to be kicked from server for points
-    **Rock, Paper, Scissors, etc** : Self explanatory
-    **Unoker(RANK + SUIT)** : Poker with 1 card
-    **Pinata** : Hit the pinata
-    
+        
     # OTHER:
     **Freak** : Freakify self
     **Freak(@)** : Freakify @user
@@ -264,26 +188,6 @@ responses = {
     **update** : See changelog and newest commands
     **Lock in** : Avoid all distractions
     **Quote** : chat, clip that
-    """,
-
-    ("update"): """
-    # NEW COMMANDS:
-    **Points** : Number of points
-    **Lock in** : Avoid all distractions
-    **Pinata** : Hit the pinata
-    **doxx** : Win any argument
-    **Collection** : view a users pebbles
-    **Quote** : chat, clip that
-    
-    # CHANGELOG:
-    - Fixed that one HELLO bug
-    - Users with 10 points can buy pebbles
-    - Can now see points with points command
-    - Can now lock in
-    - added piniata tatyatyadfiadsjnfisad
-    - can now doxx people you dont like
-    - Collection and pebble now separate commands
-    
     """,
 
     # /////////////////////////////////////////////////////////
