@@ -18,7 +18,7 @@ fi
 
 
 # PY VERSION
-PYTHON_CMD="python"
+PYTHON_CMD="python3"
 
 # SET DIRECTORY
 cd "$(dirname "$0")"

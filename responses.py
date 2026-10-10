@@ -19,8 +19,8 @@ QUOTE = functools.partial(misc.quote, message=None)
 
 # TRIGGER WORDS
 triggers = [
-    "@TA",
-    "TA"
+    "@ta",
+    "ta"
 ]
 
 # RESPONSES
@@ -46,8 +46,8 @@ responses = {
         "yeay i helped"        
     ),
 
-    ("Linked Lists", "LL") : (
-        discord.file("./topics/LinkedLists/LinkedList Data Structure -V1.pdf")
+    ("linked lists", "linked list", "ll") : (
+        discord.File("./topics/LinkedLists/LinkedList Data Structure -V1.pdf")
     ),
 
     # QUESTIONS /////////////////////////////////////////////////////////
@@ -126,13 +126,9 @@ responses = {
         discord.File("files/gif/dog.gif"),
         discord.File("files/gif/evilcat.gif"),
         discord.File("files/gif/explosion.gif"),
-        discord.File("files/gif/fnaf.gif"),
-        discord.File("files/gif/hog.gif"),
-        discord.File("files/gif/jonker.gif"),
         discord.File("files/gif/list.gif"),
         discord.File("files/gif/nerd.gif"),
         discord.File("files/gif/nerd2.gif"),
-        discord.File("files/gif/probe.gif"),
         discord.File("files/gif/sad.gif"),
         discord.File("files/gif/what.gif"),
         discord.File("files/img/1000.png"),
