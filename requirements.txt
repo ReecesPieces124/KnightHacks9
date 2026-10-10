@@ -1,0 +1,7 @@
+python-dotenv
+ffmpeg-python
+PyNaCl
+audioop-lts
+discord
+pillow
+faker
