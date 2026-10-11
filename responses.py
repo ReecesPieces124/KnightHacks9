@@ -214,7 +214,6 @@ responses = {
     **Nerd(reply)** : NeRD MeSSaGe
     **motivate** : I may or may not say something motivational
     **Lock in** : Avoid all distractions
-    **Quote** : chat, clip that
     """,
 
     # /////////////////////////////////////////////////////////
