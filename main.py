@@ -72,7 +72,7 @@ async def on_message(message: discord.Message) -> None:
         message.content = message.content.lower()
 
 
-    is_relevant : bool = any(x in message.content for x in responses.triggers) or config.no_trigger
+    is_relevant : bool = responses.trigger_pattern.search(message.content) is not None or config.no_trigger
 
     # PRINT INPUT
     if config.print_input and (config.print_unrelevant or is_relevant):

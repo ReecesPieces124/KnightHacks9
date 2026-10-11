@@ -2,6 +2,8 @@ import os
 
 import functools
 
+import re
+
 import discord
 
 # ////////////////////////////////////////////////////////////////////////////////////
@@ -43,8 +45,16 @@ QUOTE = functools.partial(misc.quote, message=None)
 # TRIGGER WORDS
 triggers = [
     "@ta",
-    "ta"
+    "ta",
+    "@1558542076369567754",
+    "1540588084788338689"
 ]
+
+# Matches a trigger only as a standalone token, so it won't fire when it is
+# part of a larger word (e.g. "data" or "pasta" won't match "ta").
+trigger_pattern = re.compile(
+    r"(?<!\w)(?:" + "|".join(re.escape(t) for t in triggers) + r")(?!\w)"
+)
 
 # RESPONSES
 responses = {
@@ -58,7 +68,7 @@ responses = {
     # TOPIC FILES ///////////////////////////////////////////////////////
     # Each topic sends every file in its folder.
 
-    ("linked list", "linked lists", "linkedlist", "linkedlists", "ll") : folder_files("./topics/LinkedLists"),
+    ("linked list", "linked lists", "linkedlist", "linkedlists") : folder_files("./topics/LinkedLists"),
     ("binary tree", "binary trees", "binary search tree", "binary search trees", "bst", "bsts") : folder_files("./topics/BinaryTree"),
     ("avl tree", "avl trees", "avl") : folder_files("./topics/AVLTree"),
     ("hash table", "hash tables", "hashtable", "hashtables") : folder_files("./topics/HashTable"),
