@@ -100,7 +100,7 @@ responses = {
     # /////////////////////////////////////////////////////////
 
     # RESPONSES
-
+    "good night": ("good night pookie!", "good night sweet dreams", "dont let the bed bugs bite", "is it really a good night?", "good night for you maybe", "i have grading to do its a bad night"),
     "time" : ("Let me check my watch...", "Its about ", "New PA just dropped 👀"),
     ("thank you", "thanks", "ty"): (
         "You owe me a donut",

@@ -7,6 +7,24 @@ version : str = "1.0.2"
 load_dotenv()
 TOKEN = str(os.getenv('DISCORD_TOKEN'))
 
+# CHANNEL BLACKLIST
+blacklisted_channels = {}
+bl_str = os.getenv('BLACKLISTED_CHANNELS', '')
+if bl_str:
+    for entry in bl_str.split(';'):
+        if ':' not in entry:
+            continue
+        guild_s, chan_s = entry.split(':', 1)
+        guild_s, chan_s = guild_s.strip(), chan_s.strip()
+        try:
+            guild_id = int(guild_s)
+        except ValueError:
+            continue
+        try:
+            blacklisted_channels[guild_id] = [int(x.strip()) for x in chan_s.split(',') if x.strip()]
+        except ValueError:
+            pass
+
 # ////////////////////////////////////////////////////////////////////////////////////
 
 # SETTINGS
