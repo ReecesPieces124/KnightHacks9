@@ -6,6 +6,8 @@ OS="UNKNOWN"
 # FIND OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     OS="LINUX"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    OS="MAC"
 elif [[ "$OSTYPE" == "msys" ]]; then
     OS="WINDOWS"
 elif [[ "$OSTYPE" == "cygwin" ]]; then
@@ -29,8 +31,8 @@ if [ ! -d "$VENV_DIR" ]; then
   $PYTHON_CMD -m venv $VENV_DIR
 fi
 
-# LINUX
-if [ "$OS" == "LINUX" ]; then
+# LINUX / MAC
+if [ "$OS" == "LINUX" ] || [ "$OS" == "MAC" ]; then
   # ACTIVATE VENV
   echo $'\n'"Activating venv..."$'\n'
   source $VENV_DIR/bin/activate || { echo "ERROR : Failed to activate venv."; read -p "Press any key to exit..."; exit 1; }

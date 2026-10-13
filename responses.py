@@ -112,6 +112,8 @@ responses = {
         "yeay i helped"        
     ),
 
+    "reece": ("father?", "uhh don't mention reece who must not be named", "pink hat guy?", "scary guyu", "reece?? where run", "rEeCe"),
+
     # QUESTIONS /////////////////////////////////////////////////////////
 
     ("?", "should i", "do you", "is the", "are the", "can i", "can you") : (
