@@ -63,6 +63,10 @@ async def on_ready() -> None:
 @client.event
 async def on_message(message: discord.Message) -> None:
 
+    # IGNORE MESSAGES FROM BOTS (INCLUDING ITSELF) TO PREVENT RESPONSE LOOPS
+    if message.author.bot:
+        return
+
     # IGNORE BLACKLISTED CHANNELS
     if message.guild and message.guild.id in config.blacklisted_channels:
         if message.channel.id in config.blacklisted_channels[message.guild.id]:
