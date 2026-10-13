@@ -39,6 +39,9 @@ NERD = functools.partial(misc.nerd, message=None)
 LOCK_IN = functools.partial(misc.lock_in, message=None)
 QUOTE = functools.partial(misc.quote, message=None)
 
+import topics.commands.events as events
+NEXT_EVENT = functools.partial(events.next_event, message=None)
+
 # ////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -96,6 +99,11 @@ responses = {
     "who": WHO,
     "lock in" : LOCK_IN,
     "nerd": NERD,
+
+    "random number": ("67", "69", "42", "-100", "10", "20", "41", "82", "97", "3.14"),
+
+    # EVENTS
+    ("next quiz", "next test", "next exam") : NEXT_EVENT,
 
     # /////////////////////////////////////////////////////////
 
