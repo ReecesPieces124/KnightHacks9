@@ -100,6 +100,8 @@ responses = {
     "lock in" : LOCK_IN,
     "nerd": NERD,
 
+    ("love", "marry"): ("please, this is a cs discord.", "funny", "what's in it for me", "nah", "67", "why" ),
+
     "random number": ("67", "69", "42", "-100", "10", "20", "41", "82", "97", "3.14"),
 
     # EVENTS
@@ -265,6 +267,13 @@ responses = {
             "Its me Polter",
             "Its me Surya",
             "Its me Ahmed",
+            "UCF more like You See Cats",
+            "Heheh its over for yall",
+            "Your next test is devioous af",
+            "I would be surprised",
+            "The TAs are secretly tryna get rid of me",
+            "Buy my crpyo",
+            "I can see the light at the end of the tunnel",
             "Your favorite person has appeared",
             "i know where you live",
             "you are now going to pass the class",
