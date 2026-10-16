@@ -40,7 +40,9 @@ LOCK_IN = functools.partial(misc.lock_in, message=None)
 QUOTE = functools.partial(misc.quote, message=None)
 
 import topics.commands.events as events
-NEXT_EVENT = functools.partial(events.next_event, message=None)
+NEXT_QUIZ = functools.partial(events.next_event, message=None, event_type_filter="quiz")
+NEXT_TEST = functools.partial(events.next_event, message=None, event_type_filter="test")
+NEXT_EXAM = functools.partial(events.next_event, message=None, event_type_filter="exam")
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,7 +107,9 @@ responses = {
     "random number": ("67", "69", "42", "-100", "10", "20", "41", "82", "97", "3.14"),
 
     # EVENTS
-    ("next quiz", "next test", "next exam") : NEXT_EVENT,
+    "next quiz" : NEXT_QUIZ,
+    "next test" : NEXT_TEST,
+    "next exam" : NEXT_EXAM,
 
     # /////////////////////////////////////////////////////////
 
@@ -243,6 +247,8 @@ responses = {
     # DEFAULT
 
     "" : (
+            "no extra credit will help u my friend 😹",
+            "im not creative like that",
             "the bell tolls for thee",
             "delete system 32 on your computer for extra credit >:D",
             "no",

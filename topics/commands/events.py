@@ -11,9 +11,12 @@ load_dotenv()
 
 # EVENTS
 # Read from the EVENTS variable in .env. It is a JSON dict of:
-#   "Event name" : "DayOfWeek Month Date"
+#   "Event name" : {"type": "quiz", "date": "DayOfWeek Month Date"}
+# "type" is one of: quiz, test, exam and selects which command shows the event
+# ("next quiz" / "next test" / "next exam").
+# A plain string date is also accepted; the type is then inferred from the event name.
 # Example:
-#   EVENTS={"Quiz 4": "Wed Oct 22", "Test 2": "Mon Nov 3", "Final Exam": "Mon Dec 8"}
+#   EVENTS={"Quiz 3": {"type": "quiz", "date": "Monday Nov 9"}, "Midterm": {"type": "test", "date": "Saturday Oct 17"}}
 
 def load_events() -> dict:
     raw = os.getenv("EVENTS", "").strip()
@@ -59,21 +62,48 @@ def next_occurrence(value : str, now : datetime) -> datetime:
 
 # ////////////////////////////////////////////////////////////////////////////////////
 
-# SEND THE CHRONOLOGICALLY NEXT EVENT
-async def next_event(message : discord.Message):
+# EVENT DATE FROM AN ENTRY
+def event_date(value) -> str:
+    if isinstance(value, dict):
+        return str(value.get("date", ""))
+    return str(value)
+
+# EVENT TYPE FROM AN ENTRY (EXPLICIT, ELSE INFERRED FROM THE NAME)
+def event_type(name : str, value) -> str:
+    if isinstance(value, dict) and value.get("type"):
+        return str(value["type"]).strip().lower()
+
+    lowered = name.lower()
+    for kind in ("quiz", "test", "exam"):
+        if kind in lowered:
+            return kind
+    return ""
+
+# ////////////////////////////////////////////////////////////////////////////////////
+
+# SEND THE CHRONOLOGICALLY NEXT EVENT OF THE GIVEN TYPE
+# Tests and exams are the same thing, so "next test" and "next exam" match either.
+async def next_event(message : discord.Message, event_type_filter : str = None):
     events = load_events()
-    if not events:
-        return False
+
+    accepted : tuple = ()
+    if event_type_filter:
+        accepted = ("test", "exam") if event_type_filter in ("test", "exam") else (event_type_filter,)
 
     now = datetime.now()
-    upcoming = [
-        (when, name)
-        for name, value in events.items()
-        if (when := next_occurrence(str(value), now)) is not None
-    ]
+    upcoming = []
+    for name, value in events.items():
+        if accepted and event_type(name, value) not in accepted:
+            continue
+
+        when = next_occurrence(event_date(value), now)
+        if when is not None:
+            upcoming.append((when, name))
 
     if not upcoming:
-        return False
+        if event_type_filter:
+            await message.channel.send(f"No upcoming {event_type_filter} on the schedule")
+        return
 
     when, name = min(upcoming, key=lambda item: item[0])
     days = (when.date() - now.date()).days
