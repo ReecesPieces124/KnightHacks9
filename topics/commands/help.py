@@ -53,7 +53,6 @@ async def help_command(message : discord.Message, client : discord.Client):
         name = "Schedule",
         value = (
             "`next quiz` — the next quiz\n"
-            "`next test` — the next test or exam\n"
             "`next exam` — the next test or exam"
         ),
         inline = False,
