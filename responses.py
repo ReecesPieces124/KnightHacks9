@@ -44,6 +44,9 @@ NEXT_QUIZ = functools.partial(events.next_event, message=None, event_type_filter
 NEXT_TEST = functools.partial(events.next_event, message=None, event_type_filter="test")
 NEXT_EXAM = functools.partial(events.next_event, message=None, event_type_filter="exam")
 
+import topics.commands.help as help_cmd
+HELP = functools.partial(help_cmd.help_command, message=None, client=None)
+
 # ////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -230,17 +233,7 @@ responses = {
         "i will leak your home address if you fail",
         ),
 
-    ("help", "commands") : """
-    # COMMANDS:
-    **Who** : Pick random user
-    **<topic> practice** : Random practice problem for a topic (any topic works too)
-        
-    # OTHER:
-    **Nerd**: NeRD SeLf
-    **Nerd(reply)** : NeRD MeSSaGe
-    **motivate** : I may or may not say something motivational
-    **Lock in** : Avoid all distractions
-    """,
+    ("help", "commands") : HELP,
 
     # /////////////////////////////////////////////////////////
 
