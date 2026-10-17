@@ -3,6 +3,7 @@ from array import ArrayType
 import discord
 import random
 import datetime
+import re
 
 import data.json_manager as json_manager
 
@@ -23,13 +24,23 @@ async def nerd(message : discord.Message):
 
 # LOCK IN
 
-lock_in_time : int = 60
-
 async def lock_in(message : discord.Message):
+    content = message.content if message.content else ""
+    hours = 1
+    m = re.search(r'\block in\b\s+(\d+)\b', content)
+    if m:
+        try:
+            h = int(m.group(1))
+            if 1 <= h <= 8:
+                hours = h
+        except ValueError:
+            hours = 1
+    minutes = hours * 60
     try:
-        await message.author.timeout(discord.utils.utcnow() + datetime.timedelta(minutes=lock_in_time), reason="locked in")
-        await message.channel.send(f"<@{message.author.id}> is locking in for {lock_in_time} minutes.")
-    except:
+        await message.author.timeout(discord.utils.utcnow() + datetime.timedelta(minutes=minutes), reason="locked in")
+        unit = "hour" if hours == 1 else "hours"
+        await message.channel.send(f"<@{message.author.id}> is locking in for {hours} {unit}.")
+    except Exception:
         await message.reply(f"You are too powerful to be muted")
 
 

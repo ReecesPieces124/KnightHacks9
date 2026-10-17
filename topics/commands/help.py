@@ -30,7 +30,7 @@ async def help_command(message : discord.Message, client : discord.Client):
     embed = discord.Embed(
         title = "TAbot Commands",
         description = "Start with **ta**, then a command. Example: `ta linked list`",
-        color = discord.Color.gold(),
+        color = discord.Color.purple(),
     )
 
     embed.add_field(
@@ -63,7 +63,7 @@ async def help_command(message : discord.Message, client : discord.Client):
         value = (
             "`who` — ping a random student\n"
             "`nerd` — NeRD-IfY a message, or reply to one to nerd-ify that\n"
-            "`lock in` — timeout yourself so you can focus\n"
+            "`lock in [n]` — timeout yourself for n hours (1-8; defaults to 1 hour)\n"
             "`motivate` — a motivational push\n"
             "`react` — a random reaction image"
         ),
